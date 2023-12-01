@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include "tradehelper/app_header.html" %}
+    <title>P2P Trade Helper | Ссылки на P2P связки для арбитража и торговли криптовалютами</title>
+</head>
+<body>
+{% include "tradehelper/navbar.html" %}
+<div id="login_container">
+    <div id="success_form">
+        <div id="login_form_header">
+            <div style="display: flex; justify-content: center;">
+                <h1 id="header_text">P2P Trade Helper</h1>
+            </div>
+            <h5 style="color:white;">Платёж выполнен!</h5>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <a href="{% url 'frontend:arbitration'%}" style="margin: 1rem; color: white;">Перейти на страницу арбитража</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

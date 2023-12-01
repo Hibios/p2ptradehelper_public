@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    container_name: 'test_nginx'
+    volumes:
+      - ./nginx/conf/test_conf.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/conf/.htpasswd:/ngx/conf/.htpasswd
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    # Перезапустит nginx контейнер каждые 6 часов и подгрузит новые сертификаты, если есть
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''

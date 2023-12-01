@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include "tradehelper/app_header.html" %}
+    <title>P2P Trade Helper | Ссылки на P2P связки для арбитража и торговли криптовалютами</title>
+</head>
+<body>
+{% include "tradehelper/navbar.html" %}
+
+<div style="display:flex; flex-direction: row; justify-content: left; align-items: center; margin-left: 100px;">
+    <p style="color: #04DE34;"><i>Прибыльных связок: {{ all_chains }}</i></p>
+</div>
+
+<hr style="color: #D9D9D9; background-color: #EF6848; border: none; height: 1px; margin: 0;"/>
+
+<form id="filter-form" method="get" action="{% url 'tradehelper:arbitration' %}">
+    <div style="display:flex; flex-direction: row; justify-content: left; align-items: center; margin-left: 100px;" class="form-group">
+        <label class="filter_label">
+            <select id="buy_on" class="form-control" name="buy_on">
+                <option value="Купить на" selected>Купить на</option>
+                <option value="PochtaBank">PochtaBank</option>
+                <option value="Yandex.Money">Yandex.Money</option>
+                <option value="Raiffaizen">Raiffaizen</option>
+                <option value="AlphaBank">AlphaBank</option>
+                <option value="VTB">VTB</option>
+                <option value="HomeCreditBank">HomeCreditBank</option>
+                <option value="QiWi">QiWi</option>
+                <option value="AkBarsBank">AkBarsBank</option>
+                <option value="Rosbank">Rosbank</option>
+                <option value="MTSBank">MTSBank</option>
+                <option value="Tinkoff">Tinkoff</option>
+                <option value="A-Bank">A-Bank</option>
+                <option value="Gasprombank">Gasprombank</option>
+                <option value="Sberbank">Sberbank</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="sell_on" class="form-control" name="sell_on">
+                <option value="Продать на" selected>Продать на</option>
+                <option value="PochtaBank">PochtaBank</option>
+                <option value="Yandex.Money">Yandex.Money</option>
+                <option value="Raiffaizen">Raiffaizen</option>
+                <option value="AlphaBank">AlphaBank</option>
+                <option value="VTB">VTB</option>
+                <option value="HomeCreditBank">HomeCreditBank</option>
+                <option value="QiWi">QiWi</option>
+                <option value="AkBarsBank">AkBarsBank</option>
+                <option value="Rosbank">Rosbank</option>
+                <option value="MTSBank">MTSBank</option>
+                <option value="Tinkoff">Tinkoff</option>
+                <option value="A-Bank">A-Bank</option>
+                <option value="Gasprombank">Gasprombank</option>
+                <option value="Sberbank">Sberbank</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="coin" class="form-control" name="coin">
+                <option value="Коин" selected>Коин</option>
+                <option value="USDT">USDT</option>
+                <option value="ETH">ETH</option>
+                <option value="BTC">BTC</option>
+                <option value="BUSD">BUSD</option>
+                <option value="BNB">BNB</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="buy_place" class="form-control" name="buy_place">
+                <option value="Место покупки" selected>Место покупки</option>
+                <option value="Binance">Binance</option>
+                <option value="Huobi">Huobi</option>
+                <option value="ByBit">ByBit</option>
+                <option value="OKX">OKX</option>
+                <option value="Bestchange">Bestchange</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="sell_place" class="form-control" name="sell_place">
+                <option value="Место продажи" selected>Место продажи</option>
+                <option value="Binance">Binance</option>
+                <option value="Huobi">Huobi</option>
+                <option value="ByBit">ByBit</option>
+                <option value="OKX">OKX</option>
+                <option value="Bestchange">Bestchange</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="buy_as" class="form-control" name="buy_as">
+                <option value="Купить как" selected>Купить как</option>
+                <option value="Тейкер">Тейкер</option>
+                <option value="Мейкер">Мейкер</option>
+            </select>
+        </label>
+        <label class="filter_label">
+            <select id="sell_as" class="form-control" name="sell_as">
+                <option value="Продать как" selected>Продать как</option>
+                <option value="Тейкер">Тейкер</option>
+                <option value="Мейкер">Мейкер</option>
+            </select>
+        </label>
+        <input id="filter-button" type="submit" name="submit" value="Искать" class="btn shadow-none"/>
+    </div>
+</form>
+
+<hr style="margin-left: 100px; margin-right: 100px; color: #EF6848; background-color: #EF6848; border: none; height: 1px"/>
+<div class="column">
+    {% for chain in chains %}
+        <div style="display:flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+            <div class="row" style="display:flex; flex-direction: row; justify-content: space-between; align-items: center; margin-left: 100px; margin-right: 100px">
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center;">
+                    <p style="margin: 5px 10px; color: #EF6848; font-size: 35px;"><b>{{ chain.buy_role }}</b></p>
+                    <a target="_blank" rel="noopener noreferrer" href="{{ chain.buy_link }}" style="margin: 5px 10px; color: black;">{{ chain.buy_detail }}</a>
+                    <p style="margin: 5px 10px; font-size: 40px; color: #EF6848;">➡</p>
+                    <p style="margin: 5px 10px; color: #EF6848; font-size: 35px;"><b>{{ chain.sell_role }}</b></p>
+                    <a target="_blank" rel="noopener noreferrer" href="{{ chain.sell_link }}" style="margin: 5px 10px; color: black;">{{ chain.sell_detail }}</a>
+                </div>
+                <p style="margin: 5px 10px; color: #04DE34;">{{ chain.profit_percent }} %</p>
+            </div>
+            <p style="margin-left: 165px; font-size: 15px; color: #777575;">Лимит покупки: {{ chain.buy_min_limit }} - {{ chain.buy_max_limit }}</p>
+            <p style="margin-left: 165px; font-size: 15px; color: #777575;">Лимит продажи: {{ chain.sell_min_limit }} - {{ chain.sell_max_limit }}</p>
+        </div>
+        <hr style="margin-left: 100px; margin-right: 100px; color: #EF6848; background-color: #EF6848; border: none; height: 1px"/>
+    {% endfor %}
+</div>
+</body>
+</html>

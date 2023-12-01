@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include "tradehelper/app_header.html" %}
+    <title>P2P Trade Helper | Ссылки на P2P связки для арбитража и торговли криптовалютами</title>
+</head>
+<body onload="
+    const inputs = document.getElementsByTagName('input');
+    for (let i=0; i<inputs.length; i++)  {
+        if (inputs[i].type === 'checkbox')   {
+            inputs[i].checked = false;
+        }
+    }">
+{% include "tradehelper/navbar.html" %}
+<div id="profile_flex">
+    <div id="profile_photo_box">
+        {% if user.profile.profile_photo %}
+            <img class="profile_photo" src='{{ user.profile.profile_photo }}' alt="">
+        {% else %}
+            <img class="profile_photo" src='static/tradehelper/images/account_circle_white_48dp.svg' alt="">
+        {% endif %}
+    </div>
+    <div id="user_data">
+        <div id="profile_edit_box">
+            <h1 id="user_nickname">{{ user.get_username }}</h1>
+            <a id="edit_button" href="{% url 'tradehelper:edit_profile' %}"><img class="image_icon" src="{% static 'tradehelper/images/edit_white_48dp.svg' %}" alt=""></a>
+        </div>
+        <p id="user_full_name">{{ user.get_full_name }}</p>
+        <p id="user_email">{{ user.email }}</p>
+        {% if user.profile.subscription.status %}
+            <p id="user_subscription">Подписка: {{ user.profile.subscription }}</p>
+        {% else %}
+            <p id="user_subscription">Подписка: не подключена</p>
+        {% endif %}
+    </div>
+</div>
+{% if not user.profile.subscription %}
+    <div class="accordion" id="accordionExample" style="margin: 1rem;">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button shadow-none" type="button" style="color: #FF9C51; background: white; font-size: 20px" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Базовая подписка
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <ul>
+                    <li><p style="color: #181818; font-size: 15px;">Доступ к списку всех связок на странице арбитража</p></li>
+                    <li><p style="color: #181818; font-size: 15px;">Возможность фильтрации связок по нужным параметрам</p></li>
+                    <li><p style="color: #181818; font-size: 15px;">Переход по ссылке прямо к продаже или покупке</p></li>
+                    <li><p style="color: #181818; font-size: 15px;">Обновление всех связок раз в минуту и быстрее</p></li>
+                    <p style="color: #FF9C51; font-size: 20px; margin-top:1rem;"><b>990₽</b></p>
+                </ul>
+                <div id="subscr_container" style="display: flex; margin-top: 1rem; margin-bottom: 1rem;">
+                    <button id="button_subscr" style="height: fit-content; color: white; background: #181818;" onclick="location.href='{% url 'tradehelper:buy_subscription'%}'" type="button" class="btn shadow-none" disabled="disabled">Купить подписку</button>
+                    <label class="form-check-label" for="flexCheckDefault" style="margin-left: 20px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onchange="document.getElementById('button_subscr').disabled = !this.checked;">
+                        <a id="rules_link" href="{% url 'tradehelper:autopay_rules'%}" style="color: #FF9C51;">Согласен с условиями оферты рекуррентных платежей</a>
+                        <p id="next_payment" style="color: #FF9C51">Дата следующего списания: {{ next_payment_date }}</p>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if user.is_authenticated %}
+    <a id="button_logout" href="{% url 'tradehelper:logout'%}?next={{request.path}}" type="button" class="btn shadow-none" style="color: white; background: #181818">Выйти</a>
+{% endif %}
+{% if user.profile.subscription and not user.profile.subscription.canceled %}
+    <button id="button_subscr" style="height: fit-content; color: white; background: #181818;" onclick="location.href='{% url 'tradehelper:unsubscribe'%}'" type="button" class="btn shadow-none">Отписаться</button>
+{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

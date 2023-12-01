@@ -1,0 +1,8 @@
+{% autoescape off %}
+Здравствуйте, {{ user }}
+
+Спасибо, что оформили подписку на нашем сервисе, дата следующего списания: {{ next_payment }}
+
+P2PTradeHelper
+
+{% endautoescape %}

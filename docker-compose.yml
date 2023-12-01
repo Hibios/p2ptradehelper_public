@@ -1,0 +1,128 @@
+version: "3.3"  # docker-compose version
+
+
+volumes:
+  postgres_data:
+  static:
+  media:
+  nginx_conf:
+  share:
+
+
+services:
+  db:
+    container_name: 'PostgreSQL'
+    image: postgres
+    restart: always
+    healthcheck:
+      test: "pg_isready -h db"
+      interval: 5s
+      timeout: 10s
+      retries: 120
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+     - ./.env
+  web:
+    container_name: 'Django'
+    build:
+      context: ./dev.p2ptradehelper
+      dockerfile: Dockerfile
+    command: gunicorn p2phelper.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      db:
+        condition: service_healthy
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./p2ptradehelper_landing/public/plasmic:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/media/plasmic
+      - static:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/static
+      - media:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/media
+      - nginx_conf:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/nginx/
+      - share:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/share:rw
+  frontend:
+    container_name: frontend
+    build: ./dev.p2ptradehelper/frontend
+    volumes:
+      - './dev.p2ptradehelper/frontend:/app'
+      - '/app/node_modules'
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run build
+  landing:
+    container_name: 'Landing'
+    build:
+      context: ./p2ptradehelper_landing
+      dockerfile: Dockerfile
+    expose:
+      - 3000
+    restart: always
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    container_name: 'Nginx'
+    volumes:
+      - ./nginx/conf/ngx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/conf/.htpasswd:/ngx/conf/.htpasswd
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - static:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/static
+      - media:/home/p2puser/dev.p2ptradehelper.ru/p2phelper/media
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+      - landing
+    # Перезапустит nginx контейнер каждые 6 часов и подгрузит новые сертификаты, если есть
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+  certbot :
+    container_name: certbot
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    # Проверяет каждые 12 часов, нужны ли новые сертификаты
+    entrypoint:  "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  redis:
+    container_name: 'Redis'
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./redis:/usr/local/etc/redis
+    ports:
+      - '6379:6379'
+        #command: redis-server /usr/local/etc/redis/redis.conf
+  pgbouncer:
+    container_name: 'Pgbouncer'
+    image: docker.io/bitnami/pgbouncer:latest
+    ports:
+      - '6432:6432'
+    environment:
+      - POSTGRESQL_USERNAME=testuser
+      - POSTGRESQL_PASSWORD=TestUser2022
+      - POSTGRESQL_DATABASE=p2ptradehelper
+      - PGBOUNCER_DATABASE="$POSTGRES_DB"
+      - POSTGRESQL_HOST=db
+      - PGBOUNCER_SET_DATABASE_USER=testuser
+  locust:
+    container_name: 'Locust'
+    image: locustio/locust
+    expose:
+      - 8089
+    restart: always
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+    volumes:
+      - ./dev.p2ptradehelper:/mnt/locust
+      - share:/mnt/locust/share:rw
+    command: -f /mnt/locust/locustfile.py

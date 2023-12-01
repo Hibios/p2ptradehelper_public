@@ -1,0 +1,57 @@
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 315px;
+  align-self: center;
+  min-width: 0;
+  border-radius: 20px;
+  padding: 8px;
+  border: 1px solid #185adb;
+}
+.h5 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  padding-bottom: 21px;
+  padding-top: 24px;
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .h5 {
+    font-size: 14px;
+    padding-bottom: 8px;
+    padding-top: 12px;
+  }
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  text-align: center;
+  color: #00000080;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  padding-bottom: 24px;
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .text {
+    font-size: 10px;
+    padding-bottom: 12px;
+    max-width: 600px;
+  }
+}

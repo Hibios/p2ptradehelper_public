@@ -1,0 +1,3 @@
+[submodule "p2ptradehelper_landing"]
+	path = p2ptradehelper_landing
+	url = git@github.com:Hibios/p2ptradehelper_landing.git

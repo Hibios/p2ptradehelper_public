@@ -1,0 +1,92 @@
+/* Styles for React */
+
+.chainCountContainer {
+    display:flow-root;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-left: 100px;
+}
+
+.black_text {
+    color: #181818;
+    font-size: 18px;
+    text-align: center;
+}
+
+.infoContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.greenText {
+    color: #04DE34;
+}
+
+.countdownText {
+    color: #FF9C51;
+    font-style: italic;
+}
+
+.greenTextPercent {
+    margin: 5px 10px;
+    color: #04DE34;
+}
+
+.splitLineYellow {
+    margin-left: 100px;
+    margin-right: 100px;
+    color: #EF6848;
+    background-color: #EF6848;
+    border: none;
+    height: 1px;
+}
+
+.splitLineGray {
+    color: #D9D9D9;
+    background-color: #D9D9D9;
+    border: none;
+    height: 1px;
+    margin: 0;
+}
+
+.chainContainer {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.rowContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.grayHintStyle {
+    margin-left: 165px;
+    font-size: 15px;
+    color: #777575;
+}
+
+.linkStyle {
+    margin: 5px 10px;
+    color: black;
+}
+
+.arrowSign {
+    margin: 5px 10px;
+    font-size: 40px;
+    color: #EF6848;
+}
+
+.interaction {
+    margin: 5px 10px;
+    color: #EF6848;
+    font-size: 35px;
+}

@@ -1,0 +1,71 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: auto;
+  max-width: 544px;
+  max-height: 563px;
+}
+.freeBox {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 544px;
+  background: var(--token-RkIxGYxDbQW5n);
+  box-shadow: 4px 6px 50px 0px #d0d0d026;
+  border-radius: 20px;
+  padding: 103px 68px 106px;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .freeBox {
+    padding: 50px 40px;
+  }
+}
+.img {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+.img > :global(.__wab_img-spacer) > img {
+  object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .img {
+    max-width: 50px;
+  }
+}
+.h3 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 364px;
+  padding-top: 52px;
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .h3 {
+    font-size: 22px;
+  }
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 409px;
+  padding-top: 32px;
+  font-size: 18px;
+  text-align: center;
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .text {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,98 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 1150px;
+  justify-content: center;
+  align-items: center;
+  background: url("/plasmic/dark_saa_s_landing_page/images/anthonyDelanoixB5POxb2AL9OUnsplashjpg.jpeg") top 50% left 50% / cover no-repeat;
+  filter: blur(0px);
+  box-shadow: inset 0px 4px 36px 15px #ffffff33;
+  min-width: 0;
+}
+.freeBox___5YcI {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+  width: auto;
+  height: 100%;
+  max-width: var(--token-n_2H_gvQgM-ZJ);
+  align-self: center;
+  margin-top: 50px;
+  margin-bottom: 71px;
+  background: none;
+  min-height: 0;
+  padding: 0px 8px;
+}
+.freeBox___5YcI > :global(.__wab_flex-container) {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  margin-left: calc(0px - 1px);
+  width: calc(100% + 1px);
+}
+.freeBox___5YcI > :global(.__wab_flex-container) > *,
+.freeBox___5YcI > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___5YcI > :global(.__wab_flex-container) > picture > img,
+.freeBox___5YcI
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 1px;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .freeBox___5YcI {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .freeBox___5YcI > :global(.__wab_flex-container) {
+    flex-direction: column;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+  }
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .freeBox___5YcI > :global(.__wab_flex-container) > *,
+  .freeBox___5YcI > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox___5YcI > :global(.__wab_flex-container) > picture > img,
+  .freeBox___5YcI
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+  }
+}
+.freeBox__gPaAa {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  left: auto;
+  top: auto;
+  min-width: 0;
+  padding: 8px;
+}
+.priceCard:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  margin-top: 50px;
+}
+@media (min-width: 0px) and (max-width: 930px) {
+  .priceCard:global(.__wab_instance) {
+    margin-bottom: 28px;
+    margin-top: 21px;
+  }
+}

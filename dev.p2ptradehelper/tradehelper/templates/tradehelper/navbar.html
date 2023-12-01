@@ -1,0 +1,23 @@
+{% load static %}
+<div id="main_navbar">
+    <div id="navbar_list">
+        <img id="app_icon" src="static/tradehelper/images/p2ptradehelper_logo.png" width="40px" height="40px" alt="Logo" style="margin-right: 20px;">
+        <h1 id="header_text">P2P Trade Helper</h1>
+    </div>
+    <div id="navbar_list">
+        <div class="topnav">
+            <a href="{% url 'frontend:arbitration' %}">Арбитраж</a>
+        </div>
+        {% if user.profile.profile_photo %}
+        <div class="circular">
+            <a id="profile_link" href="{% url 'tradehelper:profile' %}"><img src='/{{ user.profile.profile_photo }}' alt="" /></a>
+        </div>
+        {% else %}
+        <div class="circular">
+            <a id="profile_link" href="{% url 'tradehelper:profile' %}"><img src='static/tradehelper/images/account_circle_white_48dp.svg' alt="" /></a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div id="navbar_bottom_strip">
+</div>

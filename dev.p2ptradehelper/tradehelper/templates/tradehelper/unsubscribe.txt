@@ -1,0 +1,8 @@
+{% autoescape off %}
+Здравствуйте, {{ user }}
+
+Спасибо, что пользовались нашим сервисом!
+
+P2PTradeHelper
+
+{% endautoescape %}

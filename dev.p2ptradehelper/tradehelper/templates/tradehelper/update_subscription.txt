@@ -1,0 +1,8 @@
+{% autoescape off %}
+Здравствуйте, {{ user }}
+
+Мы продлили вашу подписку в соответствии с тарифом, спасибо что пользуетесь P2PTradeHelper.
+
+P2PTradeHelper
+
+{% endautoescape %}

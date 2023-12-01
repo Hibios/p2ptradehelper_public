@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include "tradehelper/app_header.html" %}
+    <title>Выход из системы</title>
+</head>
+<body>
+
+<div id="login_container">
+    <div id="login_form">
+        <div id="login_form_header">
+            <div style="display: flex; justify-content: center;">
+                <h1 id="header_text">P2P Trade Helper</h1>
+            </div>
+            <h5 style="color:white;">Выход</h5>
+        </div>
+        <p style="margin: 1rem;">Вы вышли из системы.</p>
+        <div style="padding-left: 1rem; padding-right: 1rem;">
+            <a href="{% url 'tradehelper:login' %}" class="btn btn-primary shadow-none w-100"
+               style="margin-left: 0; margin-right: 0;">Войти снова</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
