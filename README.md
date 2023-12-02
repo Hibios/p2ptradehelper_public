@@ -20,3 +20,5 @@ Python + Django + REST API + Redis + Celery + React + Bootstrap + Docker Compose
 2. Запустите sudo ./init-letsencrypt.sh
 3. Далее, чтобы развернуть сайт: docker-compose -f docker-compose.yml up -d --build
 4. Чтобы остановить сайт и очистить все данные включая базу: docker-compose down -v
+
+![image](https://github.com/Hibios/p2ptradehelper_public/assets/42024589/a0f6d910-7ab0-4553-b3a7-bbc6e98df6fb)
