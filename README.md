@@ -1,24 +1,38 @@
-# P2PTradeHelper
+A tool for P2P arbitrage - all possible trading pairs across Binance, Huobi, Bybit, OKX exchanges, as well as Bestchange.
 
-Инструмент для P2P арбитража - все возможные связки на биржах Binance, Huobi, Bybit, OKX, а также Bestchange.
+This branch allows for instant deployment of a production-like environment, though primarily intended for testing. Deploying the production version in this way is only being considered due to database-related considerations.
 
-Данная ветка позволяет мгновенно разворачивать боевую среду не отличимую от производственной версии, но в основном для тестирования. 
-Развёртывание производственной версии таким образом только рассматривается из-за базы данных.
+To use this repository, you need a server with Docker and Docker Compose installed, and a domain name linked to it.
 
-Чтобы использовать репозитой нужно иметь сервер с установленным на нём docker и docker-compose, а также прилинкованным доменом.
+If you need to use this template for another project, it is sufficient to change the domain name and remove any unnecessary services from the docker-compose file.
 
-Если необходимо использовать этот шаблон для другого проекта, то достаточно изменить домен и убрать не нужные сервисы из docker-compose.
+Tech stack used: Python + Django + REST API + Redis + Celery + React + Bootstrap + Docker Compose + PostgreSQL + GitHub Actions
 
-Используемый стек:
-Python + Django + REST API + Redis + Celery + React + Bootstrap + Docker Compose + PostgreSQL + GitHub Actions
+Deployment steps:
 
-Шаги для развёртывания:
+Clone the repository onto the server with the domain linked to it.
 
-1. Склонируйте репозиторий на сервер с доменом, привяжите домен к серверу.
-2. Инициализируйте дополнительный гит репозиторий внутри основного: git submodule init
-3. Наполните дополнителный репозиторий: git submodule update
-2. Запустите sudo ./init-letsencrypt.sh
-3. Далее, чтобы развернуть сайт: docker-compose -f docker-compose.yml up -d --build
-4. Чтобы остановить сайт и очистить все данные включая базу: docker-compose down -v
+Initialize an additional git repository inside the main one:
+``` diff
+git submodule init
+```
 
-![image](https://github.com/Hibios/p2ptradehelper_public/assets/42024589/a0f6d910-7ab0-4553-b3a7-bbc6e98df6fb)
+Populate the submodule repository:
+``` diff
+git submodule update
+```
+
+Run:
+``` diff
+sudo ./init-letsencrypt.sh
+```
+
+To deploy the website:
+``` diff
+docker-compose -f docker-compose.yml up -d --build
+```
+
+To stop the website and clear all data, including the database:
+``` diff
+docker-compose down -v
+```
