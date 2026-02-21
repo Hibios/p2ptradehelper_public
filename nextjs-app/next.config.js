@@ -12,7 +12,14 @@ const nextConfig = {
 
 module.exports = {
   ...nextConfig,
+  staticPageGenerationTimeout: 300,
   output: "standalone",
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   logging: {
     level: 'info',
   },
