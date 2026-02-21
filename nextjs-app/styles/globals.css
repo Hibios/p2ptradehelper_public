@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* В ваш CSS файл */
+.resize-handle {
+  transition: all 0.1s ease;
+}
+
+.resize-handle:hover {
+  transform: scale(1.2);
+  background-color: #2563eb !important;
+}
+
+.cursor-n-resize { cursor: n-resize; }
+.cursor-s-resize { cursor: s-resize; }
+.cursor-e-resize { cursor: e-resize; }
+.cursor-w-resize { cursor: w-resize; }
+.cursor-ne-resize { cursor: ne-resize; }
+.cursor-nw-resize { cursor: nw-resize; }
+.cursor-se-resize { cursor: se-resize; }
+.cursor-sw-resize { cursor: sw-resize; }
+
+.debug-border {
+    /*border: 1px dashed red;*/
+  }
+  
+.noShadow {
+    box-shadow: none !important;
+}
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.main-button {
+    @apply bg-gradient-to-bl from-emerald-400 via-emerald-500 via-35% to-cyan-700 to-85% shadow-none text-white;
+}
+
+.main-red-button {
+    @apply bg-gradient-to-bl from-red-500 via-red-600 via-35% to-red-700 to-85% shadow-none text-white;
+}
+
+.m-text-danger {
+    @apply text-red-500 shadow-none;
+}
+
+.m-text-primary {
+    @apply text-emerald-500 shadow-none;
+}
+
+.metric-title-column {
+
+}
+
+.metric-type-column {
+    
+}
+
+.product-column {
+    
+}
+
+.randomization-object-column {
+    
+}
+
+.additional-operation-column {
+    
+}
+
+.operation-apply-period-column {
+    
+}
+
+.matching-usage-column {
+}
+
+.column-name-column {
+    @apply break-all;
+}
+
+.smd-source-schema-column {
+    @apply break-all;
+}
+
+.smd-source-table-column {
+    @apply break-all;
+}
+
+.resize-handle {
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.resize-handle:hover {
+  transform: scale(1.2);
+}
