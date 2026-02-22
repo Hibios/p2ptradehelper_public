@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=("dev.p2ptradehelper.ru www.dev.p2ptradehelper.ru")
+domains=("ivanbuilds.tech www.ivanbuilds.tech")
 email="iminakov019@gmail.com"
 
 data_path="./data/certbot"
