@@ -7,6 +7,7 @@
 /.pnp
 .pnp.js
 .data/certbot/conf/*
+data/certbot/
 
 # testing
 /coverage
